@@ -36,6 +36,12 @@ ask_and_run() {
     done
 }
 
+if sudo -v; then
+    echo "sudo凭据已获取。"
+else
+    echo "认证失败，退出。" >&2
+    exit 1
+fi
 total=${#TASKS[@]}
 for ((i = 0; i < total; i++)); do
     task="${TASKS[i]}"
